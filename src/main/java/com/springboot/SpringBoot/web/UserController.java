@@ -1,7 +1,10 @@
 package com.springboot.SpringBoot.web;
 
+
 import com.springboot.SpringBoot.model.Employee;
+import com.springboot.SpringBoot.model.User;
 import com.springboot.SpringBoot.service.EmployeeService;
+import com.springboot.SpringBoot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
@@ -17,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.lang.reflect.Method;
 
 @Controller
-
-public class EmployeeController {
+@RequestMapping("User")
+public class UserController {
 
     @Autowired
-    private EmployeeService employeeService;
+    private UserService userService;
 
    /* @Autowired
     EmployeeController(EmployeeService employeeService){
@@ -29,41 +32,40 @@ public class EmployeeController {
     }*/
 
     @Autowired
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping("/Emp")
+    @GetMapping("/")
     public String viewHomePage(Model model) {
-        model.addAttribute("allemplist", employeeService.getAllEmployee());
-        return "index";
+        model.addAttribute("alluserlist", userService.getAllUser());
+        return "user_index";
     }
 
-    @GetMapping("/addnewEmp")
+    @GetMapping("/addnewUser")
     public String loadEmployee(Model model) {
-        Employee employee = new Employee();
-        model.addAttribute("employee", employee);
-        return "newemployee";
+        User user = new User();
+        model.addAttribute("user", user);
+        return "newuser";
     }
 
-    @PostMapping("/saveEmp")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-        employeeService.save(employee);
-        return "redirect:/Emp";
+    @PostMapping("/saveUser")
+    public String saveEmployee(@ModelAttribute("user") User user) {
+        userService.save(user);
+        return "redirect:/User/";
     }
 
-    @GetMapping("/deleteEmp/{id}")
+    @GetMapping("/deleteUser/{id}")
     public String deleteForm(@PathVariable(value = "id") long id, Model model){
-        employeeService.delete(id);
-        return "redirect:/Emp";
+        userService.delete(id);
+        return "redirect:/User/";
     }
 
 
-    @GetMapping("/UpdateEmp/{id}")
+    @GetMapping("/UpdateUser/{id}")
     public String updateForm(@PathVariable(value = "id") long id, Model model) {
-        Employee employee = employeeService.getById(id);
-        model.addAttribute("employee", employee);
-        return "update";
+        User user = userService.getById(id);
+        model.addAttribute("user", user);
+        return "user_update";
     }
 }
-

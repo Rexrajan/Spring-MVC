@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Employee</title>
+    <title>User</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -11,8 +11,8 @@
 <body>
 <div class="container my-2" align="center">
 
-    <h3>Employee List</h3>
-    <a th:href="@{/addnewEmp}" class="btn btn-primary btn-sm mb-3" >Add Employee</a>
+    <h3>User List</h3>
+    <a th:href="@{/User/addnewUser}" class="btn btn-primary btn-sm mb-3" >Add User</a>
     <table style="width:80%" border="1"
            class = "table table-striped table-responsive-md">
         <thead>
@@ -23,12 +23,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="employee:${allemplist}">
-            <td th:text="${employee.name}"></td>
-            <td th:text="${employee.email}"></td>
-            <td> <a th:href="@{/UpdateEmp/{id}(id=${employee.id})}"
+        <tr th:each="user:${alluserlist}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td> <a th:href="@{/User/UpdateUser/{id}(id=${user.id})}"
                     class="btn btn-primary">Update</a>
-                <a th:href="@{/deleteEmp/{id}(id=${employee.id})}"
+                <a th:href="@{/User/deleteUser/{id}(id=${user.id})}"
                    class="btn btn-danger">Delete</a>
             </td>
         </tr>

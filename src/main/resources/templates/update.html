@@ -13,13 +13,13 @@
   <hr>
   <h2>Update Employee</h2>
 
-  <form action="#" th:action="@{/save}" th:object="${employee}"
+  <form action="#" th:action="@{/saveEmp}" th:object="${employee}"
         method="POST">
 
     <!-- Add hidden form field to handle update -->
     <input type="hidden" th:field="*{id}" />
 
-    <input type="text" th:field="*{Name}" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{name}" class="form-control mb-4 col-4">
 
     <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
 
@@ -28,7 +28,7 @@
 
   <hr>
 
-  <a th:href = "@{/}"> Back to Employee List</a>
+  <a th:href = "@{/Emp}"> Back to Employee List</a>
 </div>
 </body>
 </html>

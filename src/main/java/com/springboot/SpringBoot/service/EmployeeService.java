@@ -14,11 +14,17 @@ import org.springframework.stereotype.Service;
         @Autowired private EmployeeRepository empRepo;
 
         public List<Employee> getAllEmployee(){
+
             return empRepo.findAll();
         }
 
         public void save(Employee employee) {
             empRepo.save(employee);
+        }
+
+        public void delete(long id){
+            empRepo.deleteById(id);
+
         }
 
         public Employee getById(Long id) {
@@ -32,7 +38,4 @@ import org.springframework.stereotype.Service;
             return employee;
         }
 
-        public void deleteViaId(long id) {
-            empRepo.deleteById(id);
-        }
     }
